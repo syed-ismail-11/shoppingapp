@@ -5,13 +5,15 @@ import { fetchProducts } from '../store/productSlice';
 import {STATUSES} from '../store/productSlice';
 
 const Products = () => {
+  // const [count] = useState(0);
   const dispatch = useDispatch()
-  const {data:products, status} = useSelector((state)=> state.product)
+  const {data:products, status} = useSelector((state)=> state.product);
 
-  useEffect(()=>{
-      dispatch(fetchProducts());
+  useEffect(() => {
+    dispatch(fetchProducts());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
-  }, []);
 
   const handleAdd =(product) =>{
       dispatch(add(product))
@@ -28,8 +30,7 @@ const Products = () => {
   }
 
   return <div className='productsWrapper'>
-    {
-      products.map((product,index)=>(
+    {products.map((product,index)=>(
         <div className='card' key={index}>
         <img id='productImg'  src={product.image} alt="" />  
         <h6 id='category'>{product.category}</h6>

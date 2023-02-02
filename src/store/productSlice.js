@@ -29,14 +29,14 @@ export default productSlice.reducer;
 //thunks
 
 export function fetchProducts(){
-  return async function fetchProducts(dispatch , getState){
-    dispatch(setStatus(STATUSES.LOADING))
+  return async function fetchProductsThunk(dispatch, getState){
+    dispatch(setStatus(STATUSES.LOADING));
     try {
       const res = await fetch('https://fakestoreapi.com/products');
       const data = await res.json();
       dispatch(setProducts(data))
       dispatch(setStatus(STATUSES.IDLE))
-    } catch (error) { 
+    } catch (error) {   
       console.log(error)
       dispatch(setStatus(STATUSES.ERROR))
     }
