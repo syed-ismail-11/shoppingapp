@@ -1,17 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { add } from '../store/cartSlice';
 import { fetchProducts } from '../store/productSlice';
 import {STATUSES} from '../store/productSlice';
-import { Link } from 'react-router-dom';
 
 const Products = () => {
   const dispatch = useDispatch()
   const {data:products, status} = useSelector((state)=> state.product)
 
   useEffect(()=>{
-      dispatch(fetchProducts())
-  },[]);
+      dispatch(fetchProducts());
+
+  }, []);
 
   const handleAdd =(product) =>{
       dispatch(add(product))
@@ -25,10 +25,6 @@ const Products = () => {
     <h1>ERROR</h1>
     <h2>Page Not Found</h2>
     </>
-  }
-  const handleView =(product)=>{
-    <Link className='navLink' to='/view'>View</Link>
-    
   }
 
   return <div className='productsWrapper'>
